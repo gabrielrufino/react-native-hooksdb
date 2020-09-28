@@ -29,5 +29,8 @@
   "homepage": "https://github.com/gabrielrufino/react-native-hooksdb#readme",
   "dependencies": {
     "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
   }
 }
