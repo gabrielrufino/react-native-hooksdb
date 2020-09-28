@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/gabrielrufino/react-native-hooksdb#readme",
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.0",
     "react": "^16.13.1"
   },
   "devDependencies": {
