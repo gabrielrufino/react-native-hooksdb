@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/gabrielrufino/react-native-hooksdb/issues"
   },
-  "homepage": "https://github.com/gabrielrufino/react-native-hooksdb#readme"
+  "homepage": "https://github.com/gabrielrufino/react-native-hooksdb#readme",
+  "dependencies": {
+    "react": "^16.13.1"
+  }
 }
