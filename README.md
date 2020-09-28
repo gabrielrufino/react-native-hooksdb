@@ -1,2 +1,3 @@
-# react-native-hooksdb
-Database using React Hooks
+# React Native HooksDB
+
+React Native database using React Hooks
