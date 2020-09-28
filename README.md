@@ -1,9 +1,7 @@
 <p align="center">
   <img width="200px" src="./docs/logo.png">
+  <h1 align="center">React Native HooksDB</h1>
 </p>
-
-
-# React Native HooksDB
 
 React Native database using React Hooks
 
