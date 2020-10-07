@@ -1,4 +1,5 @@
 import {useEffect, useCallback, useState} from 'react';
+import {v4 as uuidv4} from 'uuid';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function useCollection(collection) {
@@ -36,7 +37,7 @@ export default function useCollection(collection) {
 
       await AsyncStorage.setItem(
         collection,
-        JSON.stringify([...elements, element]),
+        JSON.stringify([...elements, {id: uuidv4(), ...element}]),
       );
 
       setElements([...elements, element]);
