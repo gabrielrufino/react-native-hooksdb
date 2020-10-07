@@ -41,7 +41,7 @@ export default function useCollection(collection) {
 
       setElements([...elements, element]);
     },
-    [getAll],
+    [collection, getAll],
   );
 
   return {
