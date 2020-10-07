@@ -34,6 +34,11 @@ export default function useCollection(collection) {
     async function (element) {
       const elements = await getAll();
 
+      await AsyncStorage.setItem(
+        collection,
+        JSON.stringify([...elements, element]),
+      );
+
       setElements([...elements, element]);
     },
     [getAll],
