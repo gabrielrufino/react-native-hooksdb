@@ -35,12 +35,14 @@ export default function useCollection(collection) {
     async function (element) {
       const elements = await getAll();
 
+      const id = uuidv4();
+
       await AsyncStorage.setItem(
         collection,
-        JSON.stringify([...elements, {id: uuidv4(), ...element}]),
+        JSON.stringify([...elements, {id, ...element}]),
       );
 
-      setElements([...elements, element]);
+      setElements([...elements, {id, ...element}]);
     },
     [collection, getAll],
   );
