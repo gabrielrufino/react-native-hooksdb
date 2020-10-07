@@ -7,6 +7,16 @@ React Native database using React Hooks
 
 ### Getting Started
 
+You've to install the package `@react-native-community/async-storage`:
+
+```bash
+npm install @react-native-community/async-storage
+```
+
+See more [here](https://github.com/react-native-community/async-storage)
+
+After that, install our package:
+
 ```bash
 npm install react-native-hooksdb
 ```
