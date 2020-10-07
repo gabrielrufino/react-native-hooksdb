@@ -2,8 +2,9 @@
   "name": "react-native-hooksdb",
   "version": "0.1.0",
   "description": "React Native database using React Hooks",
-  "main": "src/index.js",
+  "main": "./dist/index.js",
   "scripts": {
+    "build": "babel src -d dist",
     "test": "jest"
   },
   "repository": {
@@ -29,9 +30,13 @@
   "homepage": "https://github.com/gabrielrufino/react-native-hooksdb#readme",
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.0",
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "react-native": "^0.63.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "eslint": "^7.10.0",
     "jest": "^26.4.2"
