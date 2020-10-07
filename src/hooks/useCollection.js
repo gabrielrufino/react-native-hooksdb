@@ -47,8 +47,22 @@ export default function useCollection(collection) {
     [collection, getAll],
   );
 
+  const removeById = useCallback(
+    async function (id) {
+      const elements = await getAll();
+
+      const newElements = elements.filter((element) => element.id !== id);
+
+      await AsyncStorage.setItem(collection, JSON.stringify(newElements));
+
+      setElements(newElements);
+    },
+    [collection, getAll],
+  );
+
   return {
     [collection]: elements,
     insertOne,
+    removeById,
   };
 }
