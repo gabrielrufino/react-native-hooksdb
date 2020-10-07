@@ -1,6 +1,6 @@
 {
   "name": "react-native-hooksdb",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React Native database using React Hooks",
   "main": "./dist/index.js",
   "scripts": {
