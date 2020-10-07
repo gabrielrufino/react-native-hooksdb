@@ -10,7 +10,7 @@ export default function useCollection(collection) {
         const item = await AsyncStorage.getItem(collection);
 
         if (!item) {
-          AsyncStorage.setItem(collection, []);
+          AsyncStorage.setItem(collection, JSON.stringify([]));
         } else {
           setElements(JSON.parse(item));
         }
