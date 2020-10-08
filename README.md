@@ -21,36 +21,117 @@ After that, install our package:
 npm install react-native-hooksdb
 ```
 
+#### Reading elements
+
 ```jsx
-import React, {useCallback} from 'react';
-import {View, Text, Button} from 'react-native';
+import React from 'react';
+import {View, Text} from 'react-native';
 import {useCollection} from 'react-native-hooksdb';
 
-export default function App() {
-  const {users, insertOne, removeById} = useCollection('users');
+export default function Users() {
+  const {users} = useCollection('users');
 
-  const addUser = useCallback(
-    function () {
-      insertOne({name: 'Gabriel Rufino'});
-    },
-    [insertOne],
+  return (
+    <View>
+      {users.map((user) => (
+        <Text key={user.id}>{user.name}</Text>
+      ))}
+    </View>
   );
+}
+```
 
-  const removeFirstUser = useCallback(
-    function () {
-      users[0] && removeById(users[0].id);
+#### Inserting element
+
+```jsx
+import React, {useCallback, useState} from 'react';
+import {View, TextInput, Button} from 'react-native';
+import {useCollection} from 'react-native-hooksdb';
+
+export default function InsertUser() {
+  const {insertOne} = useCollection('users');
+
+  const [name, setName] = useState('');
+
+  const insertUser = useCallback(
+    async function () {
+      await insertOne({name});
+
+      setName('');
     },
-    [removeById, users],
+    [insertOne, name],
   );
 
   return (
     <View>
-      <Button onPress={addUser} title="Add user" />
-      <Button onPress={removeFirstUser} title="Remove first user" />
+      <TextInput onChangeText={setName} value={name} />
 
-      {users.map((user) => (
-        <Text key={user.id}>{user.name}</Text>
-      ))}
+      <Button onPress={insertUser} title="Insert user" />
+    </View>
+  );
+}
+```
+
+#### Updating element by id
+
+```jsx
+import React, {useCallback, useState} from 'react';
+import {View, TextInput, Button} from 'react-native';
+import {useCollection} from 'react-native-hooksdb';
+
+export default function UpdateUser() {
+  const {updateById} = useCollection('users');
+
+  const [id, setId] = useState('');
+  const [name, setName] = useState('');
+
+  const updateUser = useCallback(
+    async function () {
+      await updateById(id, {name});
+
+      setId('');
+      setName('');
+    },
+    [id, name, updateById],
+  );
+
+  return (
+    <View>
+      <TextInput onChangeText={setId} value={id} />
+      <TextInput onChangeText={setName} value={name} />
+
+      <Button onPress={updateUser} title="Update user" />
+    </View>
+  );
+}
+```
+
+#### Removing element by id
+
+```jsx
+import React, {useCallback, useState} from 'react';
+import {View, TextInput, Button} from 'react-native';
+import {useCollection} from 'react-native-hooksdb';
+
+export default function RemoveUser() {
+  const {removeById} = useCollection('users');
+
+  const [id, setId] = useState('');
+
+  const removeUser = useCallback(
+    async function () {
+      await removeById(id);
+
+      setId('');
+    },
+    [id, removeById],
+  );
+
+  return (
+    <View>
+      <TextInput onChangeText={setId} value={id} />
+
+      <Button onPress={removeUser} title="Remove user" />
     </View>
   );
 }
