@@ -47,6 +47,35 @@ export default function useCollection(collection) {
     [collection, getAll],
   );
 
+  const updateById = useCallback(
+    async function (id, updates) {
+      const elements = await getAll();
+
+      const element = elements.find((e) => e.id === id);
+
+      if (!element) {
+        throw new Error('Element not found');
+      }
+
+      const updatedElement = {
+        ...element,
+        ...updates,
+        id,
+      };
+
+      const updatedElements = elements.map((e) =>
+        e.id === id ? updatedElement : e,
+      );
+
+      await AsyncStorage.setItem(collection, JSON.stringify(updatedElements));
+
+      setElements(updatedElements);
+
+      return updatedElement;
+    },
+    [collection, getAll],
+  );
+
   const removeById = useCallback(
     async function (id) {
       const elements = await getAll();
@@ -63,6 +92,7 @@ export default function useCollection(collection) {
   return {
     [collection]: elements,
     insertOne,
+    updateById,
     removeById,
   };
 }
